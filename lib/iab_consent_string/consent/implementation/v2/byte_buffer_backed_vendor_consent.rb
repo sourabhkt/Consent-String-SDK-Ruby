@@ -24,7 +24,7 @@ module IABConsentString
             @bits_allowed_vendors  = nil
             @bits_publisher_purpose  = nil
             @end_vendor_legitimate_interest = nil
-            bits[1..]&.each do |bit|
+            bits[1..-1]&.each do |bit|
               case getSegmentType(bit)
               when 1
                 @bits_disclosed_vendors  = bit
