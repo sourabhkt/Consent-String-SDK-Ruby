@@ -26,7 +26,7 @@ module IABConsentString
               @vendor_list_version = 0
               @purpose_one_treatment = false
               @tcf_policy_version = 0
-              @publisher_cc = 'en'
+              @publisher_cc = 'AA'
               @is_service_specific = false
               @use_non_standard_stacks = false
               @special_feature_opt_in = Array.new(IABConsentString::GDPRConstantsV2::Core::SPECIAL_FEATURE_OPT_INS_SIZE, false)
