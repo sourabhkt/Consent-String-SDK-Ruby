@@ -117,8 +117,21 @@ module IABConsentString
           # @param [Integer ] id Special Feature id
           # @param [Boolean] val Optin Boolean value
           # @return [VendorConsentBuilder] self
-          def withSpecialFeatureOptIns(id, val)
+          def withSpecialFeatureOptIn(id, val)
             @consent_core.set_special_feature_opt_in(id, val)
+            self
+          end
+
+          #
+          # Set SpecialFeatureOptIn with an array
+          #
+          # @param [Array] arr index array
+          # @return [VendorConsentBuilder] self
+          #
+          def withSpecialFeatureOptIns(arr)
+            arr.each do |id|
+              @consent_core.set_special_feature_opt_in(id, true)
+            end
             self
           end
 
@@ -138,6 +151,19 @@ module IABConsentString
           end
 
           #
+          # Set PurposeConsent wit an array of index
+          #
+          # @param [Array] arr index array
+          # @return [VendorConsentBuilder] self
+          #
+          def withPurposeConsents(arr)
+            arr.each do |id|
+              @consent_core.set_purposes_consented(id, true)
+            end
+            self
+          end
+
+          #
           # The Purpose’s transparency requirements are met for each Purpose on the legal 
           # basis of legitimate interest and the user has not exercised their 
           # “Right to Object” to that Purpose.
@@ -150,8 +176,44 @@ module IABConsentString
           # @param [Boolean] val true :  legitimate interest established. false : legitimate interest was NOT established or it was established but user exercised their “Right to Object” to the Purpose 
           # @return [VendorConsentBuilder] self
           #
-          def withPurposesLITransparency(id, val)
+          def withPurposeLITransparency(id, val)
             @consent_core.set_purposes_li_transparency(id, val)
+            self
+          end
+
+          #
+          # Set PurposesLITransparency wit an array of index
+          #
+          # @param [Array] arr index array
+          # @return [VendorConsentBuilder] self
+          #
+          def withPurposesLITransparency(arr)
+            arr.each do |id|
+              @consent_core.set_purposes_li_transparency(id, true)
+            end
+            self
+          end
+
+          #
+          # CMPs can use the PublisherCC field to indicate the legal jurisdiction the publisher is under to help vendors determine whether the vendor needs consent for Purpose 1.
+          # In a globally-scoped TC string, this field must always have a value of 0. When a CMP encounters a globally-scoped TC String with PurposeOneTreatment=1 then it is considered 
+          # invalid and the CMP must discard it and re-establish transparency and consent. 
+          # @param [Boolean] purposeOneTreatment 1 Purpose 1 was NOT disclosed at all. 0 Purpose 1 was disclosed commonly as consent as expected by the Policies.
+          # @return [VendorConsentBuilder] self
+          #
+          def withPurposeOneTreatment(purposeOneTreatment)
+            @consent_core.purpose_one_treatment = purposeOneTreatment
+            self
+          end
+
+          #
+          # The country code of the country that determines legislation of reference. Commonly, this corresponds to the country in which the publisher’s business entity is established.
+          # Each letter is encoded as 6 bits, a=0..z=25.
+          # @param [String] publisherCC ISO 3166-1 alpha-2 code
+          # @return [VendorConsentBuilder] self
+          #
+          def withPublisherCC(publisherCC)
+            @consent_core.publisher_cc = publisherCC
             self
           end
 
@@ -174,7 +236,7 @@ module IABConsentString
             @consent_core.init_vendor_consent(ranged: true)
             self
           end
-  
+
           #
           # Add a vendor in vendor section segment
           #
