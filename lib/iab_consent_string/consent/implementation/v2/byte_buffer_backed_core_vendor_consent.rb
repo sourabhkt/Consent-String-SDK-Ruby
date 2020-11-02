@@ -67,7 +67,7 @@ module IABConsentString
             @bits_core.getBit(IABConsentString::GDPRConstantsV2::Core::PURPOSES_CONSENT_OFFSET + purpose_id - 1);
           end
 
-          def getAllowedPurposeIds
+          def getAllowedPurposesIds
             return (1..IABConsentString::GDPRConstantsV2::Core::PURPOSES_CONSENT_SIZE).select { |i| self.isPurposesConsented(i) }
           end
 
