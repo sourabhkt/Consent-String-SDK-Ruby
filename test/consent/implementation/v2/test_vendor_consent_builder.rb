@@ -170,6 +170,7 @@ class VendorConsentV2BuilderTest < Minitest::Test
     ids.each do |id|
       assert_equal(true,consent.isVendorLegitimateInterested(id))
     end
+    assert_equal(ids.sort,consent.getVendorLegitimateInterestIds.sort)
   end
 
   def test_withRangedVendorLegitimateInterest
@@ -179,6 +180,7 @@ class VendorConsentV2BuilderTest < Minitest::Test
     consent = @consent_builder.build
     assert_equal(true,consent.isVendorLegitimateInterested(3))
     assert_equal(true,consent.isVendorLegitimateInterested(6))
+    assert_equal([3,5,6,7,8,9],consent.getVendorLegitimateInterestIds)
   end
   
   def test_withPublisherRestriction
