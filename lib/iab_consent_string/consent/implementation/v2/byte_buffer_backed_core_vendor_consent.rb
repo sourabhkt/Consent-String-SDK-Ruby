@@ -126,6 +126,14 @@ module IABConsentString
             self.getVendorLegitimateInterest.isVendorConsented(id)
           end
 
+          def getMaxVendorLegitimateInterestId
+            self.getVendorLegitimateInterest.vendor_size
+          end
+
+          def getVendorLegitimateInterestIds()
+            (1..self.getMaxVendorLegitimateInterestId()).select { |i| self.isVendorLegitimateInterested(i) }
+          end
+
           # get publisher restriction
           # @return [PublisherRestrictionSection] publisher restriction object
           def getPublisherRestrictions
